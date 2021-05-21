@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
-import {uploadS3,TUpload} from '../modules/uploadFile';
+import {upload} from '../modules/upload';
 
 const router = express.Router();
 
-router.post('/', async(req,res)=>{
-    const image = await uploadS3((req as any).files as TUpload);
+router.post("/", upload.single('img'),async(req,res)=>{
+    const image = (req as any).file.location;
     res.send({
         imageUrl: image,
         file: req.file,

@@ -12,21 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const config_1 = __importDefault(require("../config"));
-const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield mongoose_1.default.connect(config_1.default.mongoURI, {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Mongoose Connected ...");
-    }
-    catch (err) {
-        console.error(err.message);
-        process.exit(1);
-    }
-});
-exports.default = connectDB;
-//# sourceMappingURL=db.js.map
+const express_1 = __importDefault(require("express"));
+const { upload } = require('../modules/upload');
+const router = express_1.default.Router();
+router.post("/", upload.single('img'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send({
+        imageUrl: req.file.location,
+        file: req.file,
+        body: req.body
+    });
+}));
+module.exports = router;
+//# sourceMappingURL=images.js.map
