@@ -13,13 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const { upload } = require('../modules/upload');
+const upload_1 = require("../modules/upload");
 const router = express_1.default.Router();
-router.post("/", upload.single('img'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/", upload_1.upload.single('img'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const image = req.file.location;
     res.send({
-        imageUrl: req.file.location,
-        file: req.file,
-        body: req.body
+        imageUrl: image
     });
 }));
 module.exports = router;

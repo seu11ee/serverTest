@@ -6,9 +6,7 @@ const router = express.Router();
 router.post("/", upload.single('img'),async(req,res)=>{
     const image = (req as any).file.location;
     res.send({
-        imageUrl: image,
-        file: req.file,
-        body: req.body
+        imageUrl: image
     });
 });
 
