@@ -10,6 +10,7 @@ app.use(express.json());
 
 // Define Routes
 app.use("/api/users", require("./api/users"));
+app.use("/api/images",require("./api/image"));
 // app.use("/api/profile", require("./api/profile"));
 // app.use("/api/posts", require("./api/post"));
 // app.use("/api/auth", require("./api/auth"));
