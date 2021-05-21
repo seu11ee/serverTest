@@ -20,6 +20,6 @@ export const upload = multer({
         }
     })
 });
-module.exports = upload;
+
 
 
